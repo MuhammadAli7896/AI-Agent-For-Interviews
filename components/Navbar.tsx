@@ -24,9 +24,9 @@ const Navbar = ({ user }: NavbarProps) => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-background border-b">
-      <Link href='/' className="flex items-center gap-2">
-        <Image src="/logo.svg" alt="logo" width={32} height={32} />
-        <span className="text-xl font-semibold text-primary-100">PrepWise</span>
+      <Link href='/' className="flex items-center gap-4">
+        <Image src="/logo.svg" alt="logo" width={48} height={48} />
+        <span className="text-3xl font-semibold text-primary-100">PrepWise</span>
       </Link>
 
       {user && (
@@ -38,7 +38,7 @@ const Navbar = ({ user }: NavbarProps) => {
           >
             Sign Out
           </Button>
-          
+
           {user.profileURL ? (
             <Image
               src={user.profileURL}

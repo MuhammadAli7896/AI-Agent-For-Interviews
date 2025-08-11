@@ -28,6 +28,7 @@ const Agent = ({
   feedbackId,
   type,
   questions,
+  profileUrl,
 }: AgentProps) => {
   const router = useRouter();
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
@@ -166,13 +167,28 @@ const Agent = ({
         {/* User Profile Card */}
         <div className="card-border">
           <div className="card-content">
-            <Image
-              src="/user-avatar.png"
-              alt="profile-image"
-              width={539}
-              height={539}
-              className="rounded-full object-cover size-[120px]"
-            />
+            {profileUrl ? (
+              <Image
+                src={profileUrl}
+                alt="profile-image"
+                width={539}
+                height={539}
+                className="rounded-full object-cover size-[120px]"
+                priority
+              />
+            ) : (
+              <div className="w-[120px] h-[120px] rounded-full bg-primary-100/10 flex items-center justify-center">
+                <span className="text-primary-100 text-4xl font-semibold cursor-default selection:bg-transparent">
+                  {userName
+                    .split(' ')
+                    .map(part => part[0])
+                    .slice(0, 2)
+                    .join('')
+                    .toUpperCase()}
+                </span>
+              </div>
+            )}
+
             <h3>{userName}</h3>
           </div>
         </div>
