@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
@@ -62,8 +63,10 @@ const Agent = ({
       setIsSpeaking(false);
     };
 
-    const onError = (error: Error) => {
+    const onError = (error: any) => {
       console.log("Error:", error);
+      setCallStatus(CallStatus.INACTIVE);
+      toast.error("An error occurred during the call. Please try again.", error?.errorMsg);
     };
 
     vapi.on("call-start", onCallStart);
@@ -118,12 +121,20 @@ const Agent = ({
   const handleCall = async () => {
     setCallStatus(CallStatus.CONNECTING);
 
+    const workflowId = process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
+
+    if (!workflowId) {
+      console.error("NEXT_PUBLIC_VAPI_WORKFLOW_ID is not defined");
+      setCallStatus(CallStatus.INACTIVE);
+      return;
+    }
+
     if (type === "generate") {
       await vapi.start(
         undefined,
         undefined,
         undefined,
-        process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!,
+        workflowId,
         {
           variableValues: {
             username: userName,
