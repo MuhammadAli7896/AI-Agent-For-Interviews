@@ -23,7 +23,7 @@ const Navbar = ({ user }: NavbarProps) => {
   };
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-background border-b">
+    <nav className="flex justify-between items-center p-4 -mt-4 bg-background border-b">
       <Link href='/' className="flex items-center gap-4">
         <Image src="/logo.svg" alt="logo" width={48} height={48} />
         <span className="text-3xl font-semibold text-primary-100">PrepWise</span>
