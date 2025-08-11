@@ -65,8 +65,8 @@ const Agent = ({
 
     const onError = (error: any) => {
       console.log("Error:", error);
-      setCallStatus(CallStatus.INACTIVE);
-      toast.error("An error occurred during the call. Please try again.", error?.errorMsg);
+      // setCallStatus(CallStatus.INACTIVE);
+      // toast.error("An error occurred during the call. Please try again.", error?.errorMsg);
     };
 
     vapi.on("call-start", onCallStart);
