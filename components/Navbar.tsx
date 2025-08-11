@@ -26,11 +26,11 @@ const Navbar = ({ user }: NavbarProps) => {
     <nav className="flex justify-between items-center p-4 -mt-4 bg-background border-b">
       <Link href='/' className="flex items-center gap-4">
         <Image src="/logo.svg" alt="logo" width={48} height={48} />
-        <span className="text-3xl font-semibold text-primary-100">PrepWise</span>
+        <span className="lg:text-3xl font-semibold text-primary-100">PrepWise</span>
       </Link>
 
       {user && (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center lg:gap-4">
           <Button
             variant="ghost"
             className="text-primary-100 hover:text-primary-100/90 cursor-pointer"
