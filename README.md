@@ -89,13 +89,13 @@ Before running this project, make sure you have:
 
 4. **Firebase Setup**
    - Create a new Firebase project
-   - Enable Authentication (Google sign-in)
+   - Enable Authentication (Email and Google providers)
    - Enable Firestore database
    - Download service account key for admin operations
 
 5. **Vapi AI Setup and Creating Workflow**
    - Sign up at [Vapi AI](https://vapi.ai)
-   - Get your web token
+   - Get your web token from [dashboard](https://dashboard.vapi.ai)
    - To Create a new workflow you can use the below command:
    ```bash
       curl -X POST https://api.vapi.ai/workflow \
@@ -104,7 +104,7 @@ Before running this project, make sure you have:
      --data-binary "@interviewgenerator.json"
      ```
 
-   - You can obtain your api key from [vapi-dashboard](https://dashboard.vapi.ai)
+   - You can obtain your api key from [dashboard](https://dashboard.vapi.ai)
    - Download the [interviewgenerator.json](https://github.com/MuhammadAli7896/AI-Agent-For-Interviews/blob/main/interviewgenerator.json) file which contains the exported workflow configuration
    - Verify your workflow creation after receiving a ```201 Created``` status code
    - You can copy the workflow id from the JSON response or from the [dashboard](https://dashboard.vapi.ai/workflows)
