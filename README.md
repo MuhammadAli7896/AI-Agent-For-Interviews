@@ -26,8 +26,7 @@ An intelligent, AI-powered interview practice platform that helps users prepare 
 ### Backend & AI
 - **Firebase** - Authentication, database, and hosting
 - **Vapi AI** - Voice AI platform for interview conversations
-- **Google AI SDK** - AI model integration
-- **OpenAI** - AI-powered feedback generation
+- **Google AI SDK** - AI-powered Interview and feedback generation
 
 ### Development Tools
 - **ESLint** - Code linting and formatting
