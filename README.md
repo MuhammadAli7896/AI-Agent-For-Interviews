@@ -97,18 +97,19 @@ Before running this project, make sure you have:
    - Sign up at [Vapi AI](https://vapi.ai)
    - Get your web token
    - To Create a new workflow you can use the below command:
-   ```curl
-   curl -X POST https://api.vapi.ai/workflow \
-  -H "Authorization: Bearer <YOUR_VAPI_API_KEY>" \
-  -H "Content-Type: application/json" \
-  --data-binary "@interviewgenerator.json"
-  ```
+   ```bash
+      curl -X POST https://api.vapi.ai/workflow \
+     -H "Authorization: Bearer <YOUR_VAPI_API_KEY>" \
+     -H "Content-Type: application/json" \
+     --data-binary "@interviewgenerator.json"
+     ```
 
    - You can obtain your api key from [vapi-dashboard](https://dashboard.vapi.ai)
-   - Download the [interviewgenerator.json]() file which contains the exported workflow configuration
+   - Download the [interviewgenerator.json](https://github.com/MuhammadAli7896/AI-Agent-For-Interviews/blob/main/interviewgenerator.json) file which contains the exported workflow configuration
    - Verify your workflow creation after receiving a ```201 Created``` status code
    - You can copy the workflow id from the JSON response or from the [dashboard](https://dashboard.vapi.ai/workflows)
    - Paste your workflow id in the ```.env.local``` file.
+   - Make sure to change the ```Request URL``` with your hosted url in the ```apiRequest``` node of the workflow.
 
 
 
@@ -224,4 +225,4 @@ The application can be deployed to any platform that supports Next.js:
 
 ---
 
-**Made with ❤️ by the AI Agent for Interviews Team**
+**Made with ❤️ using Next.js, Firebase and Vapi**
