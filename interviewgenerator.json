@@ -1,0 +1,199 @@
+{
+  "name": "InterviewGenerator",
+  "nodes": [
+    {
+      "name": "Conversation",
+      "type": "conversation",
+      "isStart": true,
+      "metadata": {
+        "position": {
+          "x": -370.95993631732756,
+          "y": 21.000265344468517
+        }
+      },
+      "prompt": "",
+      "model": {
+        "model": "gemini-2.0-flash",
+        "provider": "google",
+        "maxTokens": 250,
+        "temperature": 0.3
+      },
+      "voice": {
+        "voiceId": "Lily",
+        "provider": "vapi"
+      },
+      "variableExtractionPlan": {
+        "output": [
+          {
+            "enum": [],
+            "type": "string",
+            "title": "role",
+            "description": "What role would you like to train for?"
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "type",
+            "description": "Are you aiming for a technical, behavioral or mixed interview?"
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "level",
+            "description": "What kind of job experience level you are targeting for? For example: junior level, mid level, or senior level."
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "techstack",
+            "description": "A list of technologies to cover during the job interview."
+          },
+          {
+            "enum": [],
+            "type": "string",
+            "title": "amount",
+            "description": "How many questions would you like me to prepare for you?"
+          }
+        ]
+      },
+      "messagePlan": {
+        "firstMessage": "Hello, {{ username }}! Let's prepare your interview. I'll ask you a few questions and generate a perfect interview just for you. Are you ready?"
+      },
+      "toolIds": []
+    },
+    {
+      "name": "apiRequest_1754832310406",
+      "type": "tool",
+      "metadata": {
+        "position": {
+          "x": -368.6916124859446,
+          "y": 631.7634006586777
+        }
+      },
+      "tool": {
+        "url": "https://ai-agent-for-interviews.vercel.app/api/generate",
+        "body": {
+          "type": "object",
+          "required": [
+            "role",
+            "type",
+            "level",
+            "techstack",
+            "amount",
+            "userid"
+          ],
+          "properties": {
+            "role": {
+              "type": "string",
+              "default": "{{role}}",
+              "description": ""
+            },
+            "type": {
+              "type": "string",
+              "default": "{{type}}",
+              "description": ""
+            },
+            "level": {
+              "type": "string",
+              "default": "{{level}}",
+              "description": ""
+            },
+            "amount": {
+              "type": "string",
+              "default": "{{amount}}",
+              "description": ""
+            },
+            "userid": {
+              "type": "string",
+              "default": "{{userid}}",
+              "description": ""
+            },
+            "techstack": {
+              "type": "string",
+              "default": "{{techstack}}",
+              "description": ""
+            }
+          }
+        },
+        "type": "apiRequest",
+        "method": "POST",
+        "function": {
+          "name": "api_request_tool",
+          "parameters": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+          },
+          "description": "API request tool"
+        },
+        "messages": [
+          {
+            "type": "request-start",
+            "content": "Please hold on. I am sending a request to the app.",
+            "blocking": true
+          },
+          {
+            "type": "request-failed",
+            "content": "Oops! Looks like something went wrong when sending the data to the app. Please try again.",
+            "endCallAfterSpokenEnabled": true
+          }
+        ],
+        "variableExtractionPlan": {
+          "schema": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+          },
+          "aliases": []
+        }
+      }
+    },
+    {
+      "name": "hangup_1754832694095",
+      "type": "tool",
+      "metadata": {
+        "position": {
+          "x": -368.8324874499447,
+          "y": 930.5186184448961
+        }
+      },
+      "tool": {
+        "type": "endCall",
+        "function": {
+          "name": "untitled_tool",
+          "parameters": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+          }
+        },
+        "messages": [
+          {
+            "type": "request-start",
+            "content": "Your interview has been generated, thanks for the call",
+            "blocking": true
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "Conversation",
+      "to": "apiRequest_1754832310406",
+      "condition": {
+        "type": "ai",
+        "prompt": "if the user has provided all the data to be extracted."
+      }
+    },
+    {
+      "from": "apiRequest_1754832310406",
+      "to": "hangup_1754832694095",
+      "condition": {
+        "type": "ai",
+        "prompt": "If the request has been sent successfully."
+      }
+    }
+  ],
+  "globalPrompt": ""
+}
