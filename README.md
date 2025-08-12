@@ -225,4 +225,4 @@ The application can be deployed to any platform that supports Next.js:
 
 ---
 
-**Made with ❤️ using Next.js, Firebase and Vapi**
+**Made with ❤️ using Next.js, Firebase and Vapi!**
